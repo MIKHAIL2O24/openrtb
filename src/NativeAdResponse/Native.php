@@ -40,6 +40,9 @@ class Native implements Arrayable
      */
     protected $imptrackers;
 
+
+    protected $eventtrackers;
+
     /**
      * Optional JavaScript impression tracker
      * @var string
@@ -144,6 +147,33 @@ class Native implements Arrayable
         $this->validateString($imptrackers);
         $this->imptrackers[] = $imptrackers;
         return $this;
+    }
+
+    /**
+     * @param Tracker $tracker
+     * @return $this
+     */
+    public function addTracker(Tracker $tracker): Native
+    {
+        if (empty($this->eventtrackers))
+        {
+            $this->eventtrackers = new EventTrackers();
+        }
+
+        $this->eventtrackers->addTracker($tracker);
+
+        return $this;
+    }
+
+    public function setEventtrackers(EventTrackers $eventTrackers): Native
+    {
+        $this->eventtrackers = $eventTrackers;
+
+        return $this;
+    }
+    public function getEventtrackers()
+    {
+        return $this->eventtrackers;
     }
 
     /**
