@@ -21,6 +21,7 @@ class EventTrackers implements Arrayable
         return $this;
     }
 
+
     /**
      * @param Arrayable $trackers
      * @return $this
